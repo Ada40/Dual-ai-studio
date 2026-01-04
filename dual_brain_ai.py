@@ -737,11 +737,44 @@ class BrainAI:
                 last_help_time = time.time()
                 def offer_help():
                     interface.brain_chat.insert(tk.END, f"\n💡 {self.name}: I notice you haven't made changes in a while.\n")
-                    interface.brain_chat.insert(tk.END, f"Need help? Just ask me about:\n")
-                    interface.brain_chat.insert(tk.END, f"  • 'How do I...' (specific task)\n")
-                    interface.brain_chat.insert(tk.END, f"  • 'Debug this error: [error]'\n")
-                    interface.brain_chat.insert(tk.END, f"  • 'Explain [concept]'\n")
-                    interface.brain_chat.insert(tk.END, f"  • 'Search and learn [topic]' (I'll research for you!)\n\n")
+                    interface.brain_chat.insert(tk.END, f"Need help? Try asking me:\n\n")
+                    
+                    # Programming & Development
+                    interface.brain_chat.insert(tk.END, f"📝 CODING HELP:\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'How do I implement [feature]?'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'What's the best way to [task]?'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Debug this error: [error message]'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Optimize this code: [paste code]'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Show me an example of [pattern]'\n\n")
+                    
+                    # Learning & Research
+                    interface.brain_chat.insert(tk.END, f"🔍 LEARNING:\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Search and learn [topic]'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Explain [concept] in simple terms'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'What are best practices for [topic]?'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Compare [thing A] vs [thing B]'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'What should I learn next for [goal]?'\n\n")
+                    
+                    # Design & Architecture
+                    interface.brain_chat.insert(tk.END, f"🎨 DESIGN:\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'How should I structure [project type]?'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'What design pattern fits [scenario]?'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Review this architecture: [description]'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Generate ideas for [feature]'\n\n")
+                    
+                    # Problem Solving
+                    interface.brain_chat.insert(tk.END, f"🧩 PROBLEM SOLVING:\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'I'm stuck on [problem]. What should I try?'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Break down this task: [complex task]'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'What could go wrong with [approach]?'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Alternative ways to [solve problem]?'\n\n")
+                    
+                    # Proactive Questions
+                    interface.brain_chat.insert(tk.END, f"💭 OR ASK ME:\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'What questions should I be asking?'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'What am I missing in my approach?'\n")
+                    interface.brain_chat.insert(tk.END, f"  • 'Help me brainstorm [topic]'\n\n")
+                    
                     interface.brain_chat.see(tk.END)
                 interface.window.after(0, offer_help)
     
@@ -1115,6 +1148,25 @@ class BrainAI:
             "Maybe we should look for more references or examples.",
             "What do you think about expanding this into a project?",
             "Is there a technical challenge here we should solve?",
+            "Should I search and learn more about this topic?",
+            "What aspect of this interests you most?",
+            "Have you considered the edge cases here?",
+            "Would you like me to break this down into steps?",
+            "What's your end goal with this?",
+            "Are there any constraints I should know about?",
+            "What have you already tried?",
+            "Would examples help clarify this?",
+            "Should we explore alternative approaches?",
+            "What could make this solution more elegant?",
+            "Is there a similar problem you've solved before?",
+            "Would you like me to explain the underlying principles?",
+            "What questions do you have that I haven't addressed?",
+            "Should I research best practices for this?",
+            "What would make this more maintainable?",
+            "Are there performance considerations here?",
+            "Would you like to see a code example?",
+            "Should we consider scalability?",
+            "What documentation would help you most?",
             "Let's brainstorm some alternatives!",
             "Would you like to see a code or design example?",
             "Should we ask the other brain for a different perspective?",
