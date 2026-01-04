@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dual AI Studio - Professional AI Creative Workflow Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #ffdd57;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ffdd57;
+            color: #333;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .features {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #764ba2;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .pricing {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .pricing h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #764ba2;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            position: relative;
+        }
+        
+        .pricing-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .price {
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .price span {
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .pricing-card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pricing-card ul li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .buy-button {
+            display: block;
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .buy-button:hover {
+            background: #764ba2;
+        }
+        
+        .about {
+            background: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #764ba2;
+        }
+        
+        .about p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-size: 18px;
+            color: #666;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🧠 Dual AI Studio</div>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#about">About</a>
+                <a href="https://github.com/Ada40/Dual-ai-studio">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Professional AI Creative Workflow Center</h1>
+            <p>Two AI Personalities • Real-Time Collaboration • Team Mode</p>
+            <p>Transform your creative workflow with Elaine (Analytical) & Carrie (Creative)</p>
+            <a href="#pricing" class="cta-button">Get Started Now</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Powerful Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🧠 Dual AI System</h3>
+                    <p>Elaine (Analytical) and Carrie (Creative) work together to provide both technical precision and artistic inspiration for your projects.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>👁️ Real-Time Monitoring</h3>
+                    <p>Watch your project files and get instant feedback on code errors, workflow mistakes, and optimization opportunities.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>👥 Team Collaboration</h3>
+                    <p>Multi-developer tracking with conflict detection alerts. Know who's working on what in real-time.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔍 Search & Learn</h3>
+                    <p>AI researches topics on the web and remembers everything. Your knowledge base grows with every query.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🛠️ Tool Integration</h3>
+                    <p>Direct launch: Blender, Godot, FreeCAD, Unity, Unreal, LMMS, Krita, Inkscape and more.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>💾 Persistent Memory</h3>
+                    <p>SQLite-backed memory system. Your AIs remember conversations, learned concepts, and project context.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Choose Your Plan</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Personal</h3>
+                    <div class="price">$49<span></span></div>
+                    <p>One-time payment</p>
+                    <ul>
+                        <li>Single user license</li>
+                        <li>Both AI brains</li>
+                        <li>Real-time monitoring</li>
+                        <li>Basic learning</li>
+                        <li>Tool integration</li>
+                        <li>Lifetime updates</li>
+                    </ul>
+                    <a href="mailto:contact@ada40.dev?subject=Personal License Purchase" class="buy-button">Buy Now</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">$199<span></span></div>
+                    <p>One-time payment</p>
+                    <ul>
+                        <li>Everything in Personal</li>
+                        <li>Unlimited learning</li>
+                        <li>Team mode (5 users)</li>
+                        <li>Priority support</li>
+                        <li>API access</li>
+                        <li>Custom integrations</li>
+                    </ul>
+                    <a href="mailto:contact@ada40.dev?subject=Professional License Purchase" class="buy-button">Buy Now</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Studio</h3>
+                    <div class="price">$499<span></span></div>
+                    <p>One-time payment</p>
+                    <ul>
+                        <li>Everything in Pro</li>
+                        <li>Up to 10 team members</li>
+                        <li>Advanced collaboration</li>
+                        <li>White-label option</li>
+                        <li>Custom AI training</li>
+                        <li>24/7 support</li>
+                    </ul>
+                    <a href="mailto:contact@ada40.dev?subject=Studio License Purchase" class="buy-button">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Dual AI Studio</h2>
+            <p>Created by Adam Lee Hatchett, Dual AI Studio represents the cutting edge of AI-assisted creative workflows.</p>
+            <p>Combining analytical precision with creative intuition, our dual AI system helps developers, designers, and creative professionals work faster and smarter.</p>
+            <p>Built with Python, powered by Ollama LLM, and featuring the innovative Ada40 Triadic Consciousness model.</p>
+            <a href="https://github.com/Ada40/Dual-ai-studio" class="cta-button" style="margin-top: 30px;">View on GitHub</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p><strong>Dual AI Studio</strong></p>
+            <p>Professional AI Creative Workflow Center</p>
+            <p>Contact: contact@ada40.dev</p>
+            <div class="copyright">
+                <p>© 2026 Adam Lee Hatchett. All Rights Reserved.</p>
+                <p>Proprietary Software - Unauthorized use prohibited</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
