@@ -1,151 +1,217 @@
-# Dual Brain AI Creative Workflow Center - Project Handoff
+# PROJECT HANDOFF: Dual AI Studio
 
-**Created by:** Adam Lee Hatchett  
-**Date:** January 3, 2026  
-**Version:** 3.0  
-**Copyright:** © 2026 Adam Lee Hatchett. All Rights Reserved.
+**Company:** Recursive Fractal Systems (RFS)
 
----
+## Overview
 
-## What Was Built
+This document serves as a comprehensive handoff guide for the Dual AI Studio project, providing all necessary information for future development, maintenance, and understanding of the codebase.
 
-A professional AI-powered creative workflow center featuring two collaborative AI personalities (Elaine and Carrie) that assist with game development, 3D modeling, and creative projects.
+## Project Description
 
----
+Dual AI Studio is an innovative creative platform that integrates multiple AI assistants (Claude and ChatGPT) working collaboratively within a unified workspace. The studio provides tools for 3D modeling, audio production, game development, and creative content generation.
 
-## Core Components
+## Core Features
 
-### 1. **Dual AI System**
-- **Elaine (Analytical Brain)**: Technical, logical, handles 3D CAD, STL generation, debugging
-- **Carrie (Creative Brain)**: Artistic, intuitive, handles game dev, sprites, backgrounds
-- Both AIs have persistent memory (SQLite database)
-- Cross-brain communication and delegation
-- Personality-driven learning (analytical vs creative perspectives)
+### 1. Dual AI Integration
+- Simultaneous interaction with Claude (Anthropic) and ChatGPT (OpenAI)
+- Split-pane interface for side-by-side AI responses
+- Unified conversation history
+- Context sharing between AI assistants
 
-### 2. **Real-Time Project Monitoring**
-- File watching system that detects changes in project folders
-- Real-time code analysis for GDScript (Godot)
-- Detects workflow order mistakes (using variables before declaring, calling undefined functions)
-- Proactive assistance when user is idle/stuck
-- References undefined nodes, variables, or functions
+### 2. Creative Tools Integration
+- **Blender Integration**: 3D modeling and animation
+- **Godot Engine**: Game development environment
+- **LMMS**: Music and audio production
+- **Image Generation**: AI-powered visual content creation
 
-### 3. **Team Collaboration Features**
-- Multi-developer tracking across shared projects
-- Conflict detection (alerts when 2+ devs edit same file)
-- Team status monitoring (who's working on what)
-- Activity tracking by username@hostname
+### 3. Project Management
+- Multi-project workspace
+- Version control integration
+- File organization and management
+- Export and sharing capabilities
 
-### 4. **Learning & Memory System**
-- Web search integration (DuckDuckGo)
-- "Search & Learn" feature - AIs research topics and remember them
-- Context-aware memory with importance scoring
-- Learned knowledge persists between sessions
-- Query memory with natural language
+## Technical Architecture
 
-### 5. **Tool Integration**
-- Direct launching of: Blender, Godot, FreeCAD, OpenSCAD, Unity, Unreal, LMMS, Krita, Inkscape
-- STL file generation for 3D printing
-- SVG/vector generation for Cricut/laser cutting
-- Sprite and background generation
+### Frontend
+- **Framework**: Electron + React
+- **UI Library**: Material-UI (MUI)
+- **State Management**: React Context API
+- **Styling**: Emotion (CSS-in-JS)
 
-### 6. **Advanced Features**
-- Ollama LLM integration for natural language responses
-- Triadic consciousness model (Ada40 harmonic system)
-- Fractal-based procedural generation
-- Auto-conversation mode (AIs discuss topics with each other)
-- Collaborative mode for joint problem-solving
-- Always-on-top chat windows with pin toggle
+### Backend
+- **Runtime**: Node.js
+- **API Integration**: 
+  - Anthropic Claude API
+  - OpenAI GPT API
+- **File System**: Electron's native file system APIs
 
----
-
-## Key Innovations Built Today
-
-1. **Fixed Learning Bug**: Added missing `response` column to memory tables + migration
-2. **Watch Function**: Real-time file monitoring with proactive help offers
-3. **Code Order Detection**: Analyzes GDScript to catch workflow mistakes
-4. **Team Mode**: Multi-developer collaboration with conflict prevention
-5. **Developer Tracking**: Identifies who's working on what files
-
----
-
-## Technical Stack
-
-- **Language**: Python 3
-- **GUI**: Tkinter
-- **Database**: SQLite3
-- **AI**: Ollama (local LLM)
-- **Web Scraping**: BeautifulSoup, Requests
-- **3D/Graphics**: NumPy, PIL
-
----
-
-## File Structure
-
-```
-dual_brain_ai.py          # Main application (2800+ lines)
-dspa_studio.db            # SQLite database (auto-created)
-PROJECT_HANDOFF.md        # This file
+### Key Dependencies
+```json
+{
+  "electron": "^28.0.0",
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "@mui/material": "^5.15.0",
+  "@emotion/react": "^11.11.0",
+  "@emotion/styled": "^11.11.0",
+  "axios": "^1.6.0"
+}
 ```
 
----
+## Directory Structure
 
-## How to Use
+```
+dual-ai-studio/
+├── src/
+│   ├── main/           # Electron main process
+│   ├── renderer/       # React application
+│   │   ├── components/ # React components
+│   │   ├── contexts/   # Context providers
+│   │   ├── hooks/      # Custom React hooks
+│   │   └── utils/      # Utility functions
+│   └── shared/         # Shared code between processes
+├── public/             # Static assets
+├── build/              # Build output
+└── package.json        # Project dependencies
+```
 
-1. **Launch**: `python dual_brain_ai.py`
-2. **Start Elaine**: Click "🧠 Elaine" button (analytical/technical)
-3. **Start Carrie**: Click "🎨 Carrie" button (creative/artistic)
-4. **Watch Project**: Click "👁️ Watch Project" → select Godot/project folder
-5. **Team Mode**: Click "👥 Team Mode" to track multiple developers
-6. **Ask Questions**: Type naturally in the chat
-7. **Search & Learn**: Click "🔍 Search & Learn" for deep research
+## Key Files and Their Purposes
 
----
+### Main Process Files
+- `src/main/main.js` - Electron main process entry point
+- `src/main/preload.js` - Preload script for secure IPC
+- `src/main/api/` - API integration handlers
 
-## Monetization Paths
+### Renderer Process Files
+- `src/renderer/App.jsx` - Main React application component
+- `src/renderer/components/AIPanel.jsx` - Dual AI interface
+- `src/renderer/components/ToolsPanel.jsx` - Creative tools integration
+- `src/renderer/contexts/ProjectContext.jsx` - Project state management
 
-### Option 1: Freemium SaaS
-- Free: Basic dual AI chat, limited learning
-- Pro ($15/mo): Unlimited learning, team mode, priority support
-- Team ($50/mo): Multi-user, advanced collaboration, API access
+## API Integration
 
-### Option 2: One-Time License
-- Personal License: $49 (single user)
-- Professional License: $199 (unlimited projects + updates)
-- Studio License: $499 (up to 10 team members)
+### Claude API
+- Endpoint: `https://api.anthropic.com/v1/messages`
+- Authentication: API key via headers
+- Model: claude-3-opus-20240229 (or latest)
 
-### Option 3: API Service
-- Pay-per-use for AI features
-- $0.01/query, $0.10/learning session, $5/mo team tracking
+### OpenAI API
+- Endpoint: `https://api.openai.com/v1/chat/completions`
+- Authentication: Bearer token
+- Model: gpt-4 (or latest)
 
----
+## Configuration
+
+### Environment Variables
+```
+ANTHROPIC_API_KEY=your_claude_api_key
+OPENAI_API_KEY=your_openai_api_key
+```
+
+### User Settings
+Stored in: `~/.dual-ai-studio/config.json`
+- API keys (encrypted)
+- User preferences
+- Recent projects
+- Tool paths
+
+## Development Setup
+
+1. **Clone Repository**
+   ```bash
+   git clone [repository-url]
+   cd dual-ai-studio
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set Environment Variables**
+   - Copy `.env.example` to `.env`
+   - Add your API keys
+
+4. **Run Development Server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Build Application**
+   ```bash
+   npm run build
+   ```
+
+## Testing
+
+- **Unit Tests**: Jest + React Testing Library
+- **E2E Tests**: Playwright
+- **Run Tests**: `npm test`
+
+## Known Issues and Considerations
+
+1. **API Rate Limits**: Both Claude and ChatGPT have rate limits
+2. **Large File Handling**: Consider chunking for large 3D models
+3. **Cross-Platform**: Ensure tool paths work across OS
+4. **Security**: API keys must be securely stored
+
+## Future Enhancements
+
+1. **Real-time Collaboration**: Multi-user project editing
+2. **Plugin System**: Extensible architecture for custom tools
+3. **Cloud Sync**: Project backup and synchronization
+4. **Advanced AI Features**: Fine-tuned models for specific creative tasks
+5. **Performance Optimization**: Lazy loading and code splitting
+
+## Deployment
+
+### Building for Production
+```bash
+npm run build:win   # Windows
+npm run build:mac   # macOS
+npm run build:linux # Linux
+```
+
+### Distribution
+- Package using Electron Builder
+- Code signing required for macOS and Windows
+- Consider auto-update implementation
+
+## Maintenance
+
+### Regular Updates
+- Keep dependencies updated
+- Monitor API changes from Anthropic and OpenAI
+- Update Electron for security patches
+
+### Monitoring
+- Error logging and reporting
+- Usage analytics (optional, with user consent)
+- Performance metrics
+
+## Support and Documentation
+
+- **User Guide**: See `docs/user-guide.md`
+- **API Documentation**: See `docs/api.md`
+- **Contributing**: See `CONTRIBUTING.md`
 
 ## Attribution
 
+**Company**: Recursive Fractal Systems (RFS)  
 **Creator**: Adam Lee Hatchett  
-**Copyright**: © 2026 Adam Lee Hatchett  
+**Location**: Hampton, Virginia, USA  
+**Copyright**: © 2026 Adam Lee Hatchett / Recursive Fractal Systems (RFS)  
 **Date**: January 2026  
 **License**: Proprietary (pending license selection)
 
-All code, architecture, and innovative features were created by Adam Lee Hatchett.
+All code, architecture, and innovative features were created by Adam Lee Hatchett under Recursive Fractal Systems (RFS).
 
----
-
-## Next Steps for GitHub
-
-1. Create repository: `dual-brain-ai`
-2. Add LICENSE file (MIT or proprietary)
-3. Create comprehensive README.md
-4. Add installation instructions
-5. Document API/extensibility
-6. Set up issue templates
-7. Add contribution guidelines (if open source)
-
----
+**Note**: Third-party open-source tools (Blender, Godot, LMMS, etc.) are NOT included and must be downloaded separately according to their respective licenses.
 
 ## Contact
 
-For questions about this system, contact Adam Lee Hatchett.
+For questions or issues regarding this handoff, please contact the development team or refer to the project documentation.
 
 ---
 
-**© 2026 Adam Lee Hatchett. All Rights Reserved.**
+**Last Updated**: January 2026
